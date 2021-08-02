@@ -1,0 +1,36 @@
+<h1>Componente coches</h1>
+<!-- Los formularios reactivos no van en Angular 4 así que...
+<form [formGroup]="formulario_coches" (ngSubmit)="onSubmit()">
+    <label>
+        Modelo:
+        <input type="text" formControlName="modelo">
+    </label>
+    <label>
+        Marca:
+        <input type="text" formControlName="marca">
+    </label>
+    <label>
+        Color:
+        <input type="text" formControlName="color">
+    </label>
+
+    <br>
+
+    <button type="submit" [disabled]="!formulario_coches.valid">Submit</button>
+</form>
+
+<br>
+
+<button (click)="datosForm()">Ver datos</button>
+
+-->
+
+<br>
+<h3>Listado de artículos</h3>
+
+<ul *ngIf="articulos">
+    <li *ngFor="let articulo of articulos">
+        {{articulo.id}} - {{articulo.title}}
+    </li>
+</ul>
+<span *ngIf="!articulos">Cargando listado</span>

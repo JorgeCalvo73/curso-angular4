@@ -1,0 +1,87 @@
+<h2>
+  {{titulo}}
+</h2>
+
+<hr>
+
+<strong>Empleado estrella:</strong>
+
+<div *ngIf="trabajador_externo == true">
+  <button (click)="cambiarExterno(false)">Mostrar empleado</button>
+  <ul>
+    <li>{{trabajadores[0].nombre}}</li>
+    <li>{{trabajadores[0].edad}}</li>
+    <li>{{trabajadores[0].cargo}}</li>
+    <li *ngIf="trabajadores[0].contratado == true">Está contratado</li>
+    <li *ngIf="trabajadores[0].contratado == false">No está contratado</li>
+  </ul>
+</div>
+
+<div *ngIf="trabajador_externo == false">
+  <button (click)="cambiarExterno(true)">Mostrar trabajador</button>
+  <ul>
+    <li>{{empleado.nombre}}</li>
+    <li>{{empleado.edad}}</li>
+    <li>{{empleado.cargo}}</li>
+    <li *ngIf="empleado.contratado == true">Está contratado</li>
+    <li *ngIf="empleado.contratado == false">No está contratado</li>
+  </ul>
+</div>
+
+<hr>
+
+<h3>Listado de empleados</h3>
+<ul *ngFor="let empleado of trabajadores; let i = index">
+  <li>
+    <strong>Empleado {{i + 1}}:</strong> 
+    <ul>
+      <li>{{empleado.nombre}}</li>
+      <li>{{empleado.edad}}</li>
+      <li>{{empleado.cargo}}</li>
+      <li *ngIf="empleado.contratado == true">Está contratado</li>
+      <li *ngIf="empleado.contratado == false">No está contratado</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h3>Colores switch</h3>
+<ul [ngSwitch]="color">
+  <li *ngSwitchCase="'red'" [ngStyle]="{'background':color, 'color':'white'}">Es de color rojo</li>
+  <li *ngSwitchCase="'green'" [ngStyle]="{'background':color, 'color':'white'}">Es de color verde</li>
+  <li *ngSwitchCase="'blue'" [ngStyle]="{'background':color, 'color':'white'}">Es de color azul</li>
+</ul>
+
+<hr>
+
+<h3>Selector de colores</h3>
+
+<button (click)="logColorSeleccionado()">MOSTRAR LOG</button>
+
+<!--Esto es un two way data-binding, y mediante la directiva [(ngModel)] indico que
+    propiedad de la clase quiero cambiar-->
+<input type="text" [(ngModel)]="color_seleccionado">
+
+<!--Para usar la directiva [style] en un atributo hay que ponerle que propiedad hay que tocar,
+    y se pueden poner condiciones-->
+<pre
+  [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green'"
+  [ngClass]="{
+    fondoVerde: color_seleccionado == 'green',
+    fondoAzul: color_seleccionado == 'blue'
+
+  }"
+>
+<!--[class.fondoVerde]="color_seleccionado == 'blue'"  SI ESTO LO METEMOS EN EL PRE CAMBIA LA CLASE DEL ATRIBUTO-->
+
+  
+  <strong>Color elegido:</strong>
+  {{color_seleccionado}}
+</pre>
+<div [ngStyle]="{'background':color_seleccionado, 'width':'200px', 'height':'200px', 'float':'right'}">
+
+</div>
+<div style="clear: both;"></div>
+
+

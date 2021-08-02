@@ -1,0 +1,11 @@
+<h2>{{titulo}}</h2>
+
+<!--Hacemos que el texto y el parámetro que pasamos por la url sólo se muestren si hemos pasado algo por la URL-->
+<div *ngIf="parametro">
+    Parámetro de la URL: {{parametro}}
+</div>
+
+<!--Si estamos en el /contacto sin haber pasado un parámetro, sacamos un botón que nos redirija a una página con un parámetro por defecto-->
+<div *ngIf="!parametro">
+    <button (click)="redirigir()">Ir a la página con parámetro</button>
+</div>
